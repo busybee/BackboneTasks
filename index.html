@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Backbone.js • Google Tasks</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+  <style>
+  .tasks li {
+    padding: 18px 20px 18px 0;
+    position: relative;
+    font-size: 24px;
+    border-bottom: 1px solid #cccccc;
+  }
+
+  .tasks li:last-child {
+    border-bottom: none;
+  }
+
+  .tasks li.done .task-title {
+    color: #777777;
+    text-decoration: line-through;
+  }
+
+  .tasks li.done .icon-pencil {
+    display : none;
+  }
+
+  input.edit-task {
+    display: none;
+  }
+
+  .editing .view-task {
+    display: none;
+  }
+
+  .editing input.edit-task {
+    display: block;
+  }
+
+  .icon-pencil, .icon-remove{
+    cursor : pointer;
+  }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Backbone - Tasks </h1>
+
+    <div id="tasks-app" class="hide">
+
+      <div class="row static-row">
+        <div class="span4">
+          <p>
+            <input id="new-tasklist" type="text" placeholder="New task list.. ">
+          </p>
+        </div>
+      </div>
+
+      <h2>Current task lists and tasks..<h2>
+    </div>
+
+    <div class="row center">
+      <div class="span4">
+        <button class="btn btn-primary" id="authorize-button" style="visibility: hidden">Authorize</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/template" id="tasklist-template">
+    <h3><%= title %></h3>
+  </script>
+
+  <script type="text/template" id="tasks-template">
+    <div class="tasks span4">
+      <p>
+        <input id="new-task" type="text" placeholder="New Task..">
+      </p>
+      <ul class="unstyled">
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/template" id="task-template">
+    <div class="view-task clearfix">
+    <input class="toggle" type="checkbox" <%= done? 'checked=checked' : '' %> />
+    <span class="task-title">
+    <%- title %>
+    </span>
+    <span class="pull-right">
+      <i class="icon-pencil"></i>
+      <i class="icon-remove"></i>
+    </span>
+    </div>
+    <input class="edit-task" type="text" value="<%- title%>" />
+  </script>
+  
+  <script src="js/lib/jquery-1.9.1.js"></script>
+  <script src="js/lib/underscore.js"></script>
+  <script src="js/lib/backbone.js"></script>
+  <script src="js/src/helpers/gapi_client.js"></script>
+  <script src="js/src/app.js"></script>
+  <script src="js/src/models/task.js"></script>
+  <script src="js/src/models/tasklist.js"></script>
+  <script src="js/src/collections/tasks.js"></script>
+  <script src="js/src/collections/tasklists.js"></script>
+  <script src="js/src/views/app.js"></script>
+  <script src="js/src/views/tasklists.js"></script>
+  <script src="js/src/views/tasklist.js"></script>
+  <script src="js/src/views/tasks.js"></script>
+  <script src="js/src/views/task.js"></script>
+
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+</body>
+</html>
